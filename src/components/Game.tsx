@@ -47,6 +47,7 @@ function Game(props: IGameParams) {
 
   useEffect(() => {
     fetchGame();
+    // eslint-disable-next-line
   }, []);
 
   const tileClick = async (event: React.MouseEvent<HTMLDivElement>) => {
