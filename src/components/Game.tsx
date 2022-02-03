@@ -29,7 +29,7 @@ function Game(props: IGameParams) {
 
   const fetchGame = async () => {
     setMessage('');
-    const result = await axios.post('http://localhost:3001/game', {
+    const result = await axios.post('https://minesweeper-max.herokuapp.com/game', {
       gameParams: {
         colsNumber: props.colsNumber,
         rowsNumber: props.rowsNumber,
@@ -54,16 +54,12 @@ function Game(props: IGameParams) {
     if (tileString) {
       const tile = JSON.parse(tileString);
 
-      console.log(tile)
-
-      const result = await axios.post('http://localhost:3001/play', {
+      const result = await axios.post('https://minesweeper-max.herokuapp.com/play', {
         position: {
           x: tile.x,
           y: tile.y,
         }
       });
-
-      console.log(result.data);
 
       if (result.data?.error) {
         setMessage(result.data.error);
