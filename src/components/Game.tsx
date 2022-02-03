@@ -26,23 +26,25 @@ function Game(props: IGameParams) {
   const [ game, setGame ] = useState<IGame>();
   const [ message, setMessage ] = useState('');
 
-  useEffect(() => {
-    const fetchGame = async () => {
-      const result = await axios.post('http://localhost:3001/game', {
-        gameParams: {
-          colsNumber: props.colsNumber,
-          rowsNumber: props.rowsNumber,
-          bombsNumber: props.bombsNumber,
-        }
-      })
-      if (result.data?.error) {
-        setMessage(result.data.error);
-        return;
+  const fetchGame = async () => {
+    setMessage('');
+    const result = await axios.post('http://localhost:3001/game', {
+      gameParams: {
+        colsNumber: props.colsNumber,
+        rowsNumber: props.rowsNumber,
+        bombsNumber: props.bombsNumber,
       }
+    })
 
-      setGame(result.data);
+    if (result.data?.error) {
+      setMessage(result.data.error);
+      return;
     }
 
+    setGame(result.data);
+  }
+
+  useEffect(() => {
     fetchGame();
   }, []);
 
@@ -73,12 +75,15 @@ function Game(props: IGameParams) {
     }
   }
 
-  return <div id="Game">
+  return <>
+    <button id="new-game-button" onClick={fetchGame}>New game</button>
+    <div id="board">
+      {game?.tiles.map((tile, idx) => {
+        return <Tile tileDef={tile} tileClick={tileClick} numbOfCols={props.colsNumber} key={idx}/>
+      })}
+    </div>
     <div>{message}</div>
-    {game?.tiles.map((tile, idx) => {
-      return <Tile tileDef={tile} tileClick={tileClick} key={idx}/>
-    })}
-  </div>
+  </>
 }
 
 export default Game;
