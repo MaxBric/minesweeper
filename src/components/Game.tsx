@@ -5,6 +5,7 @@ import Tile from "./Tile";
 export interface IGame {
   tiles: ITile[];
   isFinished: boolean
+  isWon: boolean
   gameParams: IGameParams
 }
 
@@ -70,6 +71,7 @@ function Game(props: IGameParams) {
       }
 
       if (result.data.isFinished) setMessage('GAME OVER');
+      if (result.data.isWon) setMessage('Congratulations 🥳');
 
       setGame(result.data);
     }

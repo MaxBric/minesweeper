@@ -44,8 +44,9 @@ html, body, .App {
 .Tile {
     border: 1px grey solid;
     min-height: 50px;
+    text-align: center;
 }
 
 .Tile-revealed {
-    background-color: darkgreen;
+    background-color: #777777;
 }

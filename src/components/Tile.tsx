@@ -21,7 +21,7 @@ function Tile(props: ITileProps) {
               style={TileWidth}
               onClick={props.tileClick}
               data-tile={JSON.stringify(props.tileDef)}>
-    {`${props.tileDef.isRevealed ? props.tileDef.numberOfBombsAround : ' '}   ${props.tileDef.isABomb ? '💣' : ''}`}
+    {`${props.tileDef.isRevealed && props.tileDef.isABomb ? '💣' : props.tileDef.numberOfBombsAround ? props.tileDef.numberOfBombsAround : ''}`}
   </div>
 }
 
