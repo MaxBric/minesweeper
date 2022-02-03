@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         Minesweeper
 
-        <Game rowsNumber={10} colsNumber={10} bombsNumber={20}/>
+        <Game rowsNumber={8} colsNumber={8} bombsNumber={15}/>
       </header>
     </div>
   );
